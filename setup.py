@@ -7,7 +7,7 @@ except ImportError:
     from distutils.core import setup
 
 import re
-with open('backup_firefox/__init__.py') as file:
+with open('mozilla_config.py') as file:
     version_pattern = re.compile("__version__ = '(.*)'")
     version = version_pattern.search(file.read()).group(1)
 
@@ -15,34 +15,38 @@ with open('README.rst') as file:
     readme = file.read()
 
 setup(
-    name='backup_firefox',
+    name='mozilla_config',
     version=version,
     author='Kale Kundert',
     author_email='kale@thekunderts.net',
-    description='',
+    description="Backup and restore your Firefox and Thunderbird profiles.",
     long_description=readme,
-    url='https://github.com/kalekundert/backup_firefox',
-    packages=[
-        'backup_firefox',
+    url='https://github.com/kalekundert/mozilla_config',
+    pymodules=[
+        'mozilla_config',
     ],
+    entry_points = {
+        'console_scripts': ['mozilla_config=mozilla_config:main'],
+    },
     include_package_data=True,
     install_requires=[
+        'docopt',
     ],
     license='MIT',
     zip_safe=False,
     keywords=[
-        'backup_firefox',
+        'mozilla',
+        'firefox',
+        'thunderbird',
+        'profile',
+        'backup',
+        'restore',
     ],
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
-        'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Natural Language :: English',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.0',
-        'Programming Language :: Python :: 3.1',
-        'Programming Language :: Python :: 3.2',
-        'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Topic :: Software Development :: Libraries',
